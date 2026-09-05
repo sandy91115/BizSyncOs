@@ -1,0 +1,102 @@
+Created At: 2026-09-03T17:30:00+05:30
+Completed At: 2026-09-03T17:30:00+05:30
+File Path: `file:///c:/xampp/htdocs/bizsync-suite/frontend/src/PremiumHome.tsx`
+Total Lines: 4721
+Total Bytes: 236120
+Showing lines 4628 to 4721
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+4628: function ConnectedMap() {
+4629:     const inputCards = [
+4630:         { tone: 'teal', icon: ShoppingCart, title: 'New order placed', detail: 'Storefront, marketplace or POS', tag: 'INBOUND' },
+4631:         { tone: 'blue', icon: UsersRound, title: 'Customer updated', detail: 'CRM profile and intent signal', tag: 'CRM' },
+4632:         { tone: 'violet', icon: PackageOpen, title: 'Stock movement', detail: 'Warehouse count or reservation', tag: 'INVENTORY' },
+4633:     ] as const;
+4634:     const actionCards = [
+4635:         { tone: 'orange', icon: ShieldAlert, title: 'Risk detected', detail: 'Low stock, SLA or margin alert', tag: 'GUARDRAIL' },
+4636:         { tone: 'gold', icon: CircleDollarSign, title: 'Payment matched', detail: 'Invoice, gateway and COD ledger', tag: 'FINANCE' },
+4637:         { tone: 'pink', icon: BrainCircuit, title: 'AI recommendation', detail: 'Next best action for approval', tag: 'AI READY' },
+4638:     ] as const;
+4639: 
+4640:     return (
+4641:         <section className="os-connected-section" id="connected-workspace">
+4642:             <div className="os-shell">
+4643:                 <div className="os-section-heading os-centered">
+4644:                     <p className="os-eyebrow">
+4645:                         <Workflow size={15} /> EVENT-DRIVEN BUSINESS OPERATING SYSTEM
+4646:                     </p>
+4647:                     <h2>
+4648:                         Every business event becomes an{' '}
+4649:                         <span>intelligent business action.</span>
+4650:                     </h2>
+4651:                     <p>
+4652:                         Connect every signal once. BizSyncOS routes it through one
+4653:                         live business brain, so your team can act with context instead
+4654:                         of chasing disconnected tools.
+4655:                     </p>
+4656:                 </div>
+4657: 
+4658:                 <div className="os-event-map os-connected-map">
+4659:                     <div className="os-event-map-main">
+4660:                         <svg className="os-event-connectors" viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true">
+4661:                             <defs>
+4662:                                 <marker id="os-event-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+4663:                                     <path d="M0,0 L8,4 L0,8 Z" />
+4664:                                 </marker>
+4665:                             </defs>
+4666:                             <path className="teal" d="M245 75 C350 75 365 220 420 300" markerEnd="url(#os-event-arrow)" />
+4667:                             <path className="blue" d="M245 180 C345 180 370 270 420 325" markerEnd="url(#os-event-arrow)" />
+4668:                             <path className="violet" d="M245 285 C350 285 380 315 420 340" markerEnd="url(#os-event-arrow)" />
+4669:                             <path className="orange" d="M755 75 C650 75 635 220 580 300" markerEnd="url(#os-event-arrow)" />
+4670:                             <path className="gold" d="M755 180 C655 180 630 270 580 325" markerEnd="url(#os-event-arrow)" />
+4671:                             <path className="pink" d="M755 285 C650 285 620 315 580 340" markerEnd="url(#os-event-arrow)" />
+4672:                             <circle className="event-flow-dot teal" cx="346" cy="145" r="4" />
+4673:                             <circle className="event-flow-dot blue" cx="352" cy="238" r="4" />
+4674:                             <circle className="event-flow-dot violet" cx="370" cy="307" r="4" />
+4675:                             <circle className="event-flow-dot orange" cx="654" cy="145" r="4" />
+4676:                             <circle className="event-flow-dot gold" cx="648" cy="238" r="4" />
+4677:                             <circle className="event-flow-dot pink" cx="630" cy="307" r="4" />
+4678:                         </svg>
+4679: 
+4680:                         <div className="os-event-side os-event-inputs">
+4681:                             <p className="os-event-side-label">CONNECTED SIGNALS <span>01 · 03</span></p>
+4682:                             {inputCards.map(({ tone, icon: Icon, title, detail, tag }) => (
+4683:                                 <div className={`os-event-card ${tone}`} key={title}>
+4684:                                     <span className="os-event-card-icon"><Icon size={18} /></span>
+4685:                                     <div><strong>{title}</strong><small>{detail}</small><em>{tag}</em></div>
+4686:                                 </div>
+4687:                             ))}
+4688:                         </div>
+4689: 
+4690:                         <div className="os-event-intelligence">
+4691:                             <p className="os-event-intelligence-label">BIZSYNCOS INTELLIGENCE <span>LIVE · SUB-15MS</span></p>
+4692:                             <div className="os-event-orbit-node analysis"><BarChart3 size={18} /><strong>Real-time context</strong><small>40k+ signals unified</small></div>
+4693:                             <div className="os-event-orbit-node kpi"><TrendingUp size={18} /><strong>Margin pulse</strong><small>Profit guardrails</small></div>
+4694:                             <div className="os-event-orbit-node forecast"><Target size={18} /><strong>Next best action</strong><small>AI forecast ready</small></div>
+4695:                             <div className="os-event-orbit-node risk"><ShieldCheck size={18} /><strong>Approval control</strong><small>Owner stays in charge</small></div>
+4696:                             <div className="os-event-orbit-node opportunity"><Sparkles size={18} /><strong>Opportunity radar</strong><small>Revenue unlocked</small></div>
+4697:                             <div className="os-event-core">
+4698:                                 <div className="os-event-core-mark">BS</div>
+4699:                                 <small>ONE CONNECTED BUSINESS BRAIN</small>
+4700:                                 <strong>BizSync<span>OS</span></strong>
+4701:                                 <ul><li>Events processed <b>40k+</b></li><li>Automations live <b>24</b></li><li>Actions ready <b>08</b></li></ul>
+4702:                             </div>
+4703:                             <div className="os-event-health-engine"><span><HeartPulse size={17} /></span><div><strong>Business health updated</strong><small>Signals reconciled across every channel</small></div></div>
+4704:                         </div>
+4705: 
+4706:                         <div className="os-event-side os-event-actions">
+4707:                             <p className="os-event-side-label">CONNECTED ACTIONS <span>03 · 03</span></p>
+4708:                             {actionCards.map(({ tone, icon: Icon, title, detail, tag }) => (
+4709:                                 <div className={`os-event-card ${tone}`} key={title}>
+4710:                                     <span className="os-event-card-icon"><Icon size={18} /></span>
+4711:                                     <div><strong>{title}</strong><small>{detail}</small><em>{tag}</em></div>
+4712:                                 </div>
+4713:                             ))}
+4714:                         </div>
+4715:                     </div>
+4716:                 </div>
+4717:             </div>
+4718:         </section>
+4719:     );
+4720: }
+4721: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

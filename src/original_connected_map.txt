@@ -1,0 +1,167 @@
+Created At: 2026-09-02T17:25:59+05:30
+Completed At: 2026-09-02T17:26:05+05:30
+
+The command exited with code 0.
+Output:
+2391 :                             onClick={() => navigate('/contact')}
+2392 :                         >
+2393 :                             Start the conversation <ArrowRight size={16} />
+2394 :                         </button>
+2395 :                     </motion.aside>
+2396 :                 </div>
+2397 :             </section>
+2398 :         </main>
+2399 :     );
+2400 : }
+2401 : 
+2402 : function Metric({
+2403 :     icon: Icon,
+2404 :     label,
+2405 :     value,
+2406 :     trend,
+2407 :     tone,
+2408 : }: {
+2409 :     icon: LucideIcon;
+2410 :     label: string;
+2411 :     value: string;
+2412 :     trend: string;
+2413 :     tone: string;
+2414 : }) {
+2415 :     return (
+2416 :         <article className={`os-kpi ${tone}`}>
+2417 :             <span>
+2418 :                 <Icon size={15} />
+2419 :             </span>
+2420 :             <small>{label}</small>
+2421 :             <strong>{value}</strong>
+2422 :             <em>{trend}</em>
+2423 :             <i />
+2424 :         </article>
+2425 :     );
+2426 : }
+2427 : 
+2428 : function MiniChart() {
+2429 :     return (
+2430 :         <div className="os-chart">
+2431 :             <svg
+2432 :                 viewBox="0 0 400 130"
+2433 :                 role="img"
+2434 :                 aria-label="Illustrative rising revenue trend"
+2435 :             >
+2436 :                 <defs>
+2437 :                     <linearGradient id="os-area" x1="0" x2="0" y1="0" y2="1">
+2438 :                         <stop
+2439 :                             offset="0"
+2440 :                             stopColor="#19c7ad"
+2441 :                             stopOpacity=".28"
+2442 :                         />
+2443 :                         <stop offset="1" stopColor="#19c7ad" stopOpacity="0" />
+2444 :                     </linearGradient>
+2445 :                 </defs>
+2446 :                 <path
+2447 :                     className="os-chart-area"
+2448 :                     d="M0 111 C25 93 42 95 60 80 S92 76 112 67 S144 83 164 71 S205 58 222 61 S255 56 274 48 S310 55 330 30 S368 24 400 10 L400 130 L0 130 Z"
+2449 :                 />
+2450 :                 <path
+2451 :                     className="os-chart-line"
+2452 :                     d="M0 111 C25 93 42 95 60 80 S92 76 112 67 S144 83 164 71 S205 58 222 61 S255 56 274 48 S310 55 330 30 S368 24 400 10"
+2453 :                 />
+2454 :             </svg>
+2455 :         </div>
+2456 :     );
+2457 : }
+2458 : 
+2459 : function Channel({
+2460 :     name,
+2461 :     value,
+2462 :     change,
+2463 : }: {
+2464 :     name: string;
+2465 :     value: string;
+2466 :     change: string;
+2467 : }) {
+2468 :     return (
+2469 :         <div className="os-channel">
+2470 :             <span>{name}</span>
+2471 :             <b>{value}</b>
+2472 :             <em>{change}</em>
+2473 :         </div>
+2474 :     );
+2475 : }
+2476 : function MiniMetric({ label, value }: { label: string; value: string }) {
+2477 :     return (
+2478 :         <article>
+2479 :             <span>{label}</span>
+2480 :             <strong>{value}</strong>
+2481 :             <i />
+2482 :         </article>
+2483 :     );
+2484 : }
+2485 : function FlowLine({ index, active }: { index: number; active: boolean }) {
+2486 :     return (
+2487 :         <span
+2488 :             className={`os-flow-line ${active ? 'active' : ''}`}
+2489 :             style={{ '--flow-delay': `${index * 0.12}s` } as CSSProperties}
+2490 :         >
+2491 :             <i />
+2492 :         </span>
+2493 :     );
+2494 : }
+2495 : function WorkflowStep({
+2496 :     icon: Icon,
+2497 :     label,
+2498 :     title,
+2499 :     text,
+2500 :     approval,
+2501 :     active,
+2502 : }: {
+2503 :     icon: LucideIcon;
+2504 :     label: string;
+2505 :     title: string;
+2506 :     text: string;
+2507 :     approval?: boolean;
+2508 :     active?: boolean;
+2509 : }) {
+2510 :     return (
+2511 :         <article
+2512 :             className={`os-workflow-step ${approval ? 'is-approval' : ''} ${active ? 'active' : ''}`}
+2513 :         >
+2514 :             <span>
+2515 :                 <Icon size={17} />
+2516 :             </span>
+2517 :             <small>{label}</small>
+2518 :             <strong>{title}</strong>
+2519 :             <em>{text}</em>
+2520 :         </article>
+2521 :     );
+2522 : }
+2523 : function ConnectedMap() {
+2524 :     const businessEvents: {
+2525 :         icon: LucideIcon;
+2526 :         title: string;
+2527 :         note: string;
+2528 :         tone: string;
+2529 :     }[] = [
+2530 :         {
+2531 :             icon: UserPlus,
+2532 :             title: 'Lead captured',
+2533 :             note: 'New lead created',
+2534 :             tone: 'teal',
+2535 :         },
+2536 :         {
+2537 :             icon: ShoppingBag,
+2538 :             title: 'Order created',
+2539 :             note: 'New order received',
+2540 :             tone: 'blue',
+2541 :         },
+2542 :         {
+2543 :             icon: WalletCards,
+2544 :             title: 'Payment received',
+2545 :             note: 'Payment successfully captured',
+2546 :             tone: 'violet',
+2547 :         },
+2548 :         {
+2549 :             icon: PackageOpen,
+2550 :             title: 'Inventory updated',
+2551 :             note: 'Stock levels changed',
+

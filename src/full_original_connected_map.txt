@@ -1,0 +1,134 @@
+Created At: 2026-09-03T17:48:12+05:30
+Completed At: 2026-09-03T17:48:13+05:30
+File Path: `file:///c:/xampp/htdocs/bizsync-suite/frontend/src/PremiumHome.tsx`
+Total Lines: 4807
+Total Bytes: 242430
+Showing lines 4625 to 4750
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+4625:     );
+4626: }
+4627: 
+4628: function ConnectedMap() {
+4629:     const inputCards = [
+4630:         { tone: 'teal', icon: UsersRound, title: 'Lead captured', detail: 'New lead created', tag: 'CRM' },
+4631:         { tone: 'blue', icon: ShoppingCart, title: 'Order created', detail: 'New order received', tag: 'ORDERS' },
+4632:         { tone: 'violet', icon: CreditCard, title: 'Payment received', detail: 'Payment successfully captured', tag: 'FINANCE' },
+4633:         { tone: 'orange', icon: PackageOpen, title: 'Inventory updated', detail: 'Stock levels changed', tag: 'INVENTORY' },
+4634:         { tone: 'gold', icon: ClipboardList, title: 'Invoice generated', detail: 'Invoice created', tag: 'FINANCE' },
+4635:         { tone: 'pink', icon: MessageCircle, title: 'Customer support', detail: 'New ticket received', tag: 'SUPPORT' },
+4636:     ] as const;
+4637:     const actionCards = [
+4638:         { tone: 'green', icon: PackageCheck, title: 'AI detected low stock', detail: 'Restock recommended', tag: 'AI INSIGHT' },
+4639:         { tone: 'blue', icon: ShoppingBag, title: 'Purchase draft created', detail: 'PO draft ready for review', tag: 'AUTOMATION' },
+4640:         { tone: 'violet', icon: MessageCircle, title: 'Customer notified', detail: 'WhatsApp message sent', tag: 'AUTOMATION' },
+4641:         { tone: 'orange', icon: Warehouse, title: 'Warehouse task created', detail: 'Pick, pack & dispatch', tag: 'AUTOMATION' },
+4642:         { tone: 'gold', icon: FileCheck2, title: 'Invoice & entries posted', detail: 'Finance records updated', tag: 'SYSTEM' },
+4643:         { tone: 'pink', icon: HeartPulse, title: 'Business health updated', detail: 'Score recalculated', tag: 'AI ENGINE' },
+4644:     ] as const;
+4645:     const connectorLines = [
+4646:         { tone: 'teal', marker: 'os-event-arrow-teal', d: 'M270 80 C425 80 500 192 614 286', dot: [460, 161] },
+4647:         { tone: 'blue', marker: 'os-event-arrow-blue', d: 'M270 163 C430 163 516 248 614 310', dot: [480, 230] },
+4648:         { tone: 'violet', marker: 'os-event-arrow-violet', d: 'M270 246 C435 246 530 294 614 334', dot: [500, 284] },
+4649:         { tone: 'orange', marker: 'os-event-arrow-orange', d: 'M270 329 C435 329 530 348 614 355', dot: [508, 344] },
+4650:         { tone: 'gold', marker: 'os-event-arrow-gold', d: 'M270 412 C432 412 520 394 614 377', dot: [494, 400] },
+4651:         { tone: 'pink', marker: 'os-event-arrow-pink', d: 'M270 495 C425 495 502 445 614 398', dot: [470, 465] },
+4652:         { tone: 'teal', marker: 'os-event-arrow-teal', d: 'M806 286 C920 192 995 80 1150 80', dot: [960, 161] },
+4653:         { tone: 'blue', marker: 'os-event-arrow-blue', d: 'M806 310 C904 248 990 163 1150 163', dot: [940, 230] },
+4654:         { tone: 'violet', marker: 'os-event-arrow-violet', d: 'M806 334 C890 294 985 246 1150 246', dot: [920, 284] },
+4655:         { tone: 'orange', marker: 'os-event-arrow-orange', d: 'M806 355 C890 348 985 329 1150 329', dot: [912, 344] },
+4656:         { tone: 'gold', marker: 'os-event-arrow-gold', d: 'M806 377 C900 394 988 412 1150 412', dot: [926, 400] },
+4657:         { tone: 'pink', marker: 'os-event-arrow-pink', d: 'M806 398 C918 445 995 495 1150 495', dot: [950, 465] },
+4658:     ] as const;
+4659:     const policySteps = [
+4660:         { tone: 'teal', icon: Workflow, title: 'Trigger', detail: 'Event received' },
+4661:         { tone: 'violet', icon: BrainCircuit, title: 'AI recommendation', detail: 'Best action suggested' },
+4662:         { tone: 'blue', icon: ShieldCheck, title: 'Policy check', detail: 'Rules & conditions' },
+4663:         { tone: 'orange', icon: CheckCircle2, title: 'Approval', detail: 'Human in control' },
+4664:         { tone: 'green', icon: Zap, title: 'Execute action', detail: 'Across systems' },
+4665:         { tone: 'slate', icon: ClipboardList, title: 'Audit & log', detail: 'Full transparency' },
+4666:     ] as const;
+4667:     const modules = [
+4668:         { tone: 'green', icon: UsersRound, title: 'CRM & Leads' },
+4669:         { tone: 'blue', icon: ShoppingCart, title: 'Orders' },
+4670:         { tone: 'violet', icon: PackageOpen, title: 'Inventory' },
+4671:         { tone: 'orange', icon: Warehouse, title: 'Warehouse' },
+4672:         { tone: 'blue', icon: ShoppingBag, title: 'Purchase' },
+4673:         { tone: 'green', icon: WalletCards, title: 'Finance' },
+4674:         { tone: 'pink', icon: MessageSquareText, title: 'Marketing' },
+4675:         { tone: 'violet', icon: MessageCircle, title: 'Support' },
+4676:         { tone: 'cyan', icon: BarChart3, title: 'Reports' },
+4677:         { tone: 'gold', icon: Building2, title: 'HR' },
+4678:         { tone: 'more', icon: Database, title: 'More' },
+4679:     ] as const;
+4680:     const benefits = [
+4681:         { icon: Workflow, title: 'Real-time visibility', detail: 'See everything as it happens' },
+4682:         { icon: BrainCircuit, title: 'Smarter decisions', detail: 'AI-powered recommendations' },
+4683:         { icon: ShieldCheck, title: 'Safe automation', detail: 'Policies, approvals & controls' },
+4684:         { icon: TrendingUp, title: 'Business growth', detail: 'Focus on what matters most' },
+4685:     ] as const;
+4686: 
+4687:     return (
+4688:         <section className="os-connected-section" id="connected-workspace">
+4689:             <div className="os-shell">
+4690:                 <div className="os-section-heading os-centered">
+4691:                     <p className="os-eyebrow">
+4692:                         <Workflow size={15} /> EVENT-DRIVEN BUSINESS OPERATING SYSTEM
+4693:                     </p>
+4694:                     <h2>
+4695:                         Every business event becomes an{' '}
+4696:                         <span>intelligent business action.</span>
+4697:                     </h2>
+4698:                     <p>
+4699:                         Orders, payments, inventory, finance, customers, and operations
+4700:                         flow through a shared operating layer that understands what
+4701:                         happened, recommends the next best action, and safely
+4702:                         orchestrates execution.
+4703:                     </p>
+4704:                 </div>
+4705: 
+4706:                 <div className="os-event-map os-connected-map">
+4707:                     <div className="os-event-map-main">
+4708:                         <svg className="os-event-connectors" viewBox="0 0 1420 650" preserveAspectRatio="none" aria-hidden="true">
+4709:                             <defs>
+4710:                                 <marker id="os-event-arrow-teal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path fill="#10c3b2" d="M0,0 L8,4 L0,8 Z" /></marker>
+4711:                                 <marker id="os-event-arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path fill="#2984fa" d="M0,0 L8,4 L0,8 Z" /></marker>
+4712:                                 <marker id="os-event-arrow-violet" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path fill="#785beb" d="M0,0 L8,4 L0,8 Z" /></marker>
+4713:                                 <marker id="os-event-arrow-orange" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path fill="#fa851e" d="M0,0 L8,4 L0,8 Z" /></marker>
+4714:                                 <marker id="os-event-arrow-gold" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path fill="#eeb00a" d="M0,0 L8,4 L0,8 Z" /></marker>
+4715:                                 <marker id="os-event-arrow-pink" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path fill="#ec4c98" d="M0,0 L8,4 L0,8 Z" /></marker>
+4716:                             </defs>
+4717:                             {connectorLines.map(({ tone, marker, d, dot }, index) => (
+4718:                                 <g key={`${tone}-${index}`}>
+4719:                                     <path className={tone} d={d} markerEnd={`url(#${marker})`} />
+4720:                                     <circle className={`event-flow-dot ${tone}`} cx={dot[0]} cy={dot[1]} r="4" />
+4721:                                 </g>
+4722:                             ))}
+4723:                         </svg>
+4724: 
+4725:                         <div className="os-event-side os-event-inputs">
+4726:                             <p className="os-event-side-label">BUSINESS EVENTS <span>(WHAT HAPPENED)</span></p>
+4727:                             {inputCards.map(({ tone, icon: Icon, title, detail, tag }) => (
+4728:                                 <div className={`os-event-card ${tone}`} key={title}>
+4729:                                     <span className="os-event-card-icon"><Icon size={18} /></span>
+4730:                                     <div><strong>{title}</strong><small>{detail}</small><em>{tag}</em></div>
+4731:                                 </div>
+4732:                             ))}
+4733:                         </div>
+4734: 
+4735:                         <div className="os-event-intelligence">
+4736:                             <p className="os-event-intelligence-label">AI ANALYSIS &amp; INTELLIGENCE <span>(UNDERSTAND &amp; RECOMMEND)</span></p>
+4737:                             <div className="os-event-orbit-node analysis"><BrainCircuit size={18} /><strong>AI analysis</strong><small>Pattern detection</small></div>
+4738:                             <div className="os-event-orbit-node kpi"><BarChart3 size={18} /><strong>KPI &amp; analytics</strong><small>Real-time insights</small></div>
+4739:                             <div className="os-event-orbit-node forecast"><TrendingUp size={18} /><strong>Forecasting</strong><small>Predict outcomes</small></div>
+4740:                             <div className="os-event-orbit-node risk"><ShieldAlert size={18} /><strong>Risk detection</strong><small>Identify issues</small></div>
+4741:                             <div className="os-event-orbit-node opportunity"><Target size={18} /><strong>Opportunities</strong><small>Find growth areas</small></div>
+4742:                             <div className="os-event-core">
+4743:                                 <div className="os-event-core-mark">BS</div>
+4744:                                 <strong>BizSync<span>OS</span></strong>
+4745:                                 <small>AI business operating system</small>
+4746:                             </div>
+4747:                             <div className="os-event-health-engine"><span><HeartPulse size={17} /></span><div><strong>Business health updated</strong><small>Continuously updated from all events</small></div></div>
+4748:                         </div>
+4749: 
+4750:                         <div className="os-event-side os-event-actions">
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
