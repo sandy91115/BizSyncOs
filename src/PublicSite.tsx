@@ -5174,13 +5174,10 @@ function AuthPage({
                             onClick={() => navigate('/')}
                         >
                             <img
-                                src="/images/bizsync-logo.png"
-                                alt="BizSyncOS Logo"
+                                src="/images/bizsync-logo-white.png"
+                                alt="BizSync"
                                 className="saas-brand-logo-img"
                             />
-                            <span className="saas-brand-title">
-                                BizSync<strong>OS</strong>
-                            </span>
                             <span className="saas-brand-badge">Enterprise</span>
                         </button>
 

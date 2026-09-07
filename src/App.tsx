@@ -354,13 +354,12 @@ function StatItem({
 
 function BrandMark() {
     return (
-        <a className="brand" href="/" aria-label="BizSyncOS home">
-            <span className="brand-mark">
-                <span />
-            </span>
-            <span>
-                BizSync<span>OS</span>
-            </span>
+        <a className="brand" href="/" aria-label="BizSync home">
+            <img
+                src="/images/bizsync-logo-transparent.png"
+                alt="BizSync"
+                className="brand-logo-img"
+            />
         </a>
     );
 }

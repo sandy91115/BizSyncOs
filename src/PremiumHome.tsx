@@ -5137,7 +5137,7 @@ function ConnectedMap() {
                                 <div className="os-mockup-core-orbit-ring" />
                                 <div className="os-mockup-core">
                                     <div className="os-mockup-core-badge">
-                                        BS
+                                        <img src="/images/bizsync-icon.png" alt="BS" style={{ width: 28, height: 28, objectFit: "contain" }} />
                                     </div>
                                     <strong>
                                         BizSync<span>OS</span>
