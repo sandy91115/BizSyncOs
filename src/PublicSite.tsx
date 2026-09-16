@@ -56,6 +56,7 @@ import {
 } from 'simple-icons';
 import { DocsPortal } from './DocsPortal';
 import './auth.css';
+import { PasswordRecovery } from './PasswordRecovery';
 
 export type PublicRoute =
   | '/'
@@ -70,7 +71,9 @@ export type PublicRoute =
   | '/contact'
   | '/demo'
   | '/login'
-  | '/signup';
+  | '/signup'
+  | '/forgot-password'
+  | '/reset-password';
 
 type PublicSiteProps = {
   route: Exclude<PublicRoute, '/'>;
@@ -6245,6 +6248,7 @@ export function PublicSite({ route, navigate }: PublicSiteProps) {
   if (route === '/blog') return <BlogPage navigate={navigate} />;
   if (route === '/about') return <AboutPage navigate={navigate} />;
   if (route === '/contact') return <ContactPage navigate={navigate} />;
+  if (route === '/forgot-password' || route === '/reset-password') return <PasswordRecovery reset={route === '/reset-password'} />;
   if (route === '/login') return <AuthPage kind="login" navigate={navigate} />;
   if (route === '/signup') return <AuthPage kind="signup" navigate={navigate} />;
   return <LiveDemoPage navigate={navigate} />;

@@ -68,6 +68,8 @@ const publicRoutes: Route[] = [
   '/demo',
   '/login',
   '/signup',
+  '/forgot-password',
+  '/reset-password',
 ];
 const isPublicRoute = (value: string): value is Route => publicRoutes.includes(value as Route);
 const legacyRouteRedirects: Record<string, Route> = {
@@ -81,6 +83,8 @@ const resolvePublicRoute = (pathname: string): Route => {
   return isPublicRoute(route) ? route : '/';
 };
 const resolveCurrentRoute = (): Route => {
+  const authScreen = document.querySelector<HTMLMetaElement>('meta[name="auth-screen"]')?.content;
+  if (authScreen && isPublicRoute(authScreen)) return authScreen;
   const route = resolvePublicRoute(window.location.pathname);
   if (window.location.pathname !== route) {
     window.history.replaceState({}, '', route);
@@ -2459,7 +2463,7 @@ function Footer({ navigate }: { navigate: (route: Route) => void }) {
 
 export default function App() {
   const [route, setRoute] = useState<Route>(resolveCurrentRoute);
-  const isAuthRoute = route === '/login' || route === '/signup';
+  const isAuthRoute = ['/login', '/signup', '/forgot-password', '/reset-password'].includes(route);
   useEffect(() => {
     const destination = directAccessRoutes[route];
     if (destination) {
@@ -2473,7 +2477,11 @@ export default function App() {
   }, []);
   const navigate = useCallback((nextRoute: Route) => {
     const frontend = document.querySelector<HTMLMetaElement>('meta[name="auth-frontend"]')?.content;
-    if (frontend && nextRoute !== '/login') {
+    if (frontend && ['/login', '/forgot-password'].includes(nextRoute)) {
+      window.location.assign(nextRoute);
+      return;
+    }
+    if (frontend) {
       window.location.assign(`${frontend}${nextRoute}`);
       return;
     }
