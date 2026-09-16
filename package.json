@@ -6,6 +6,7 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc --noEmit && vite build",
+        "build:auth": "tsc --noEmit && vite build --mode auth --base /auth-ui/ --outDir ../backend/public/auth-ui && node scripts/copy-auth-logo.mjs",
         "preview": "vite preview",
         "lint": "eslint .",
         "test:e2e": "playwright test"

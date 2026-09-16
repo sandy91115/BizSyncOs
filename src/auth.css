@@ -4,6 +4,19 @@
    ========================================================================== */
 
 /* Full Viewport Canvas */
+.saas-auth-error {
+    color: #fda4af;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 8px 0;
+}
+
+.saas-auth-status {
+    color: #6ee7b7;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
 .saas-auth-root {
     min-height: 100vh;
     width: 100%;

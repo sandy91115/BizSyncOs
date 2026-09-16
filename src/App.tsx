@@ -2472,6 +2472,11 @@ export default function App() {
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
   const navigate = useCallback((nextRoute: Route) => {
+    const frontend = document.querySelector<HTMLMetaElement>('meta[name="auth-frontend"]')?.content;
+    if (frontend && nextRoute !== '/login') {
+      window.location.assign(`${frontend}${nextRoute}`);
+      return;
+    }
     const destination = directAccessRoutes[nextRoute];
     if (destination) {
       window.location.assign(destination);

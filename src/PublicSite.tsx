@@ -45,7 +45,7 @@ import {
   X,
   Zap,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   siQuickbooks,
   siRazorpay,
@@ -81,6 +81,7 @@ const isLocalHost =
   typeof window !== 'undefined' &&
   (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 const LOCAL_BACKEND_URL =
+  document.querySelector<HTMLMetaElement>('meta[name="auth-backend"]')?.content ||
   import.meta.env.VITE_BACKEND_URL ||
   (isLocalHost ? 'http://127.0.0.1:9000' : 'https://crm.cybals.com');
 const backendPath = (path: string) => `${LOCAL_BACKEND_URL.replace(/\/$/, '')}${path}`;
@@ -4096,13 +4097,28 @@ function AuthPage({
   const [agreeTerms, setAgreeTerms] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(() =>
-    isLogin ? new URLSearchParams(window.location.search).get('error') || '' : '',
+    isLogin ? document.querySelector<HTMLMetaElement>('meta[name="auth-error"]')?.content || new URLSearchParams(window.location.search).get('error') || '' : '',
   );
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const loginStatus = document.querySelector<HTMLMetaElement>('meta[name="auth-status"]')?.content;
+  const needsAuthNavigation = isLogin && import.meta.env.PROD &&
+    window.location.origin !== new URL(LOCAL_BACKEND_URL, window.location.origin).origin;
+
+  useEffect(() => {
+    if (needsAuthNavigation) window.location.replace(backendPath('/login'));
+  }, [needsAuthNavigation]);
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (submitting) return;
     if (isLogin) {
+      const errors: Record<string, string> = {};
+      if (!email.trim()) errors.email = 'Please enter your email address.';
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) errors.email = 'Please enter a valid email address.';
+      if (!password) errors.password = 'Please enter your password.';
+      setFieldErrors(errors);
+      setLoginError('');
+      if (Object.keys(errors).length) return;
       setSubmitting(true);
       setLoginError('');
       try {
@@ -4124,8 +4140,14 @@ function AuthPage({
           },
           body: JSON.stringify({ email: email.trim(), password, remember: rememberMe }),
         });
-        const data = await response.json();
+        const data = await response.json().catch(() => ({}));
         if (!response.ok) {
+          if (response.status === 422 && data.errors) {
+            setFieldErrors(Object.fromEntries(Object.entries(data.errors).map(([field, messages]) =>
+              [field, Array.isArray(messages) ? String(messages[0]) : String(messages)],
+            )));
+            return;
+          }
           throw new Error(response.status === 429
             ? 'Too many sign-in attempts. Please wait a minute and try again.'
             : response.status === 419
@@ -4153,6 +4175,8 @@ function AuthPage({
     window.location.assign(emailPath + query);
   };
 
+  if (needsAuthNavigation) return <main className="saas-auth-root"><p role="status">Opening secure sign-in…</p></main>;
+
   return (
     <div className="saas-auth-root">
       <div className="saas-auth-layout">
@@ -4162,7 +4186,7 @@ function AuthPage({
           <div className="saas-auth-top-nav">
             <button type="button" className="saas-auth-brand" onClick={() => navigate('/')}>
               <img
-                src="/images/bizsync-logo-white.png"
+                src={`${import.meta.env.BASE_URL}images/bizsync-logo-white.png`}
                 alt="BizSync"
                 className="saas-brand-logo-img"
               />
@@ -4221,7 +4245,7 @@ function AuthPage({
             </div>
 
             {/* Real Interactive Form */}
-            <form className="saas-form" onSubmit={handleFormSubmit}>
+            <form className="saas-form" onSubmit={handleFormSubmit} noValidate={isLogin}>
               {!isLogin && (
                 <>
                   <div className="saas-field">
@@ -4268,6 +4292,8 @@ function AuthPage({
                   <Mail size={16} className="saas-input-icon" />
                   <input
                     id="auth-email"
+                    aria-invalid={Boolean(fieldErrors.email)}
+                    aria-describedby={fieldErrors.email ? 'auth-email-error' : undefined}
                     type="email"
                     className="saas-input"
                     placeholder="name@company.com"
@@ -4277,6 +4303,7 @@ function AuthPage({
                     required
                   />
                 </div>
+                {fieldErrors.email && <p id="auth-email-error" className="saas-auth-error" role="alert">{fieldErrors.email}</p>}
               </div>
 
               <div className="saas-field">
@@ -4294,6 +4321,8 @@ function AuthPage({
                   <Lock size={16} className="saas-input-icon" />
                   <input
                     id="auth-password"
+                    aria-invalid={Boolean(fieldErrors.password)}
+                    aria-describedby={fieldErrors.password ? 'auth-password-error' : undefined}
                     type={showPassword ? 'text' : 'password'}
                     className="saas-input"
                     placeholder="Enter your password"
@@ -4336,7 +4365,9 @@ function AuthPage({
                 )}
               </div>
 
-              {loginError && <p role="alert">{loginError}</p>}
+              {fieldErrors.password && <p id="auth-password-error" className="saas-auth-error" role="alert">{fieldErrors.password}</p>}
+              {loginError && <p className="saas-auth-error" role="alert">{loginError}</p>}
+              {loginStatus && <p className="saas-auth-status" role="status">{loginStatus}</p>}
               <button type="submit" className="saas-submit-btn" disabled={submitting}>
                 <span>{submitting ? 'Signing in...' : isLogin ? 'Sign In to Workspace' : 'Start 3-Day Free Trial'}</span>
                 <ArrowRight size={16} />
