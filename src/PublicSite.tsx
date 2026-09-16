@@ -4094,9 +4094,58 @@ function AuthPage({
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [agreeTerms, setAgreeTerms] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [loginError, setLoginError] = useState(() =>
+    isLogin ? new URLSearchParams(window.location.search).get('error') || '' : '',
+  );
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting) return;
+    if (isLogin) {
+      setSubmitting(true);
+      setLoginError('');
+      try {
+        const csrf = await fetch(backendPath('/auth/csrf-token'), {
+          credentials: 'include',
+          headers: { Accept: 'application/json' },
+          cache: 'no-store',
+        });
+        if (!csrf.ok) throw new Error('Unable to start sign-in. Please try again.');
+        const { token } = await csrf.json();
+        const response = await fetch(emailPath, {
+          method: 'POST',
+          credentials: 'include',
+          redirect: 'error',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': token,
+          },
+          body: JSON.stringify({ email: email.trim(), password, remember: rememberMe }),
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(response.status === 429
+            ? 'Too many sign-in attempts. Please wait a minute and try again.'
+            : response.status === 419
+              ? 'Your session expired. Please try again.'
+              : data.errors?.email?.[0] || data.message || 'Sign-in failed. Please try again.');
+        }
+        if (data.two_factor) {
+          window.location.assign(backendPath('/two-factor-challenge'));
+        } else if (typeof data.redirect === 'string') {
+          window.location.assign(data.redirect);
+        } else {
+          throw new Error('Sign-in could not be confirmed. Please try again.');
+        }
+      } catch (error) {
+        setLoginError(error instanceof Error ? error.message : 'Unable to sign in. Please try again.');
+      } finally {
+        setSubmitting(false);
+      }
+      return;
+    }
     const params = new URLSearchParams();
     if (email.trim()) params.set('email', email.trim());
     if (name.trim()) params.set('name', name.trim());
@@ -4287,8 +4336,9 @@ function AuthPage({
                 )}
               </div>
 
-              <button type="submit" className="saas-submit-btn">
-                <span>{isLogin ? 'Sign In to Workspace' : 'Start 3-Day Free Trial'}</span>
+              {loginError && <p role="alert">{loginError}</p>}
+              <button type="submit" className="saas-submit-btn" disabled={submitting}>
+                <span>{submitting ? 'Signing in...' : isLogin ? 'Sign In to Workspace' : 'Start 3-Day Free Trial'}</span>
                 <ArrowRight size={16} />
               </button>
             </form>
