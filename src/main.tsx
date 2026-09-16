@@ -4,6 +4,7 @@ import App from './App';
 import './styles.css';
 import './architecture-map.css';
 import './hero-flow.css';
+import './responsive.css';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>

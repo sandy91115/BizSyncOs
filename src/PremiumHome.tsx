@@ -4922,6 +4922,8 @@ function ConnectedMap() {
             <div className="os-mockup-bg-aurora" />
             <div className="os-shell">
                 <div className="os-event-map os-connected-map">
+                    <p className="os-event-scroll-hint">Swipe to explore events, AI intelligence and outcomes <ArrowRight size={14} /></p>
+                    <div className="os-event-map-scroll" role="region" aria-label="Business event flow — scroll horizontally to explore" tabIndex={0}>
                     <div className="os-event-map-main">
                         <svg
                             className="os-event-connectors"
@@ -5192,6 +5194,7 @@ function ConnectedMap() {
                         </div>
                     </div>
 
+                    </div>
                     {/* Lower Panel: Automation & Policy Engine + Human in Control */}
                     <div className="os-mockup-control-grid">
                         <div className="os-mockup-policy-panel">

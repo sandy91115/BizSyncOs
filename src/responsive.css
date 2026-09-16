@@ -1,0 +1,240 @@
+/* Keep the diagram's coordinate system intact on smaller screens. The local
+   scroll region preserves the desktop flow and every connector at readable size. */
+@media (max-width: 1500px) {
+    .premium-home .os-connected-section.os-mockup-version .os-event-map-scroll {
+        max-width: 100%;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        padding-bottom: 16px;
+    }
+
+    .premium-home .os-connected-section.os-mockup-version .os-event-map-main {
+        display: block !important;
+        width: 1420px;
+        height: 520px !important;
+        min-height: 520px !important;
+        overflow: visible !important;
+    }
+
+    .premium-home .os-connected-section.os-mockup-version .os-event-side {
+        position: absolute !important;
+        display: block;
+        top: 0 !important;
+        width: 260px !important;
+        height: 520px;
+        transform: none;
+    }
+
+    .premium-home .os-connected-section.os-mockup-version .os-event-inputs {
+        left: 0 !important;
+        right: auto !important;
+    }
+
+    .premium-home .os-connected-section.os-mockup-version .os-event-actions {
+        right: 0 !important;
+        left: auto !important;
+    }
+
+    .premium-home .os-connected-section.os-mockup-version .os-event-intelligence {
+        position: absolute !important;
+        display: block !important;
+        top: 0 !important;
+        left: 50% !important;
+        width: 560px !important;
+        height: 520px !important;
+        margin: 0 !important;
+        transform: translateX(-50%);
+    }
+
+    .premium-home .os-connected-section.os-mockup-version .os-event-connectors {
+        display: block !important;
+    }
+}
+
+.os-event-scroll-hint {
+    display: none;
+}
+
+@media (max-width: 1100px) {
+    .premium-home .os-event-scroll-hint {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 0 0 16px;
+        color: #315166;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .premium-home .os-mockup-control-grid {
+        width: 100%;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .premium-home .os-mockup-policy-steps {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px 12px;
+    }
+
+    .premium-home .os-pro-tab-bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        gap: 6px;
+    }
+
+    .premium-home .os-pro-tab-btn {
+        flex: 0 1 auto;
+        min-width: 0;
+        white-space: normal;
+    }
+
+    .premium-home .os-faq-reassurance-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .premium-home .os-faq-reassurance-actions {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 720px) {
+    /* Keep all eight desktop workflow steps visible in reading order. */
+    .premium-home .os-hero-workflow-pattern .os-hero-flow-bar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        overflow: visible;
+        gap: 10px;
+    }
+
+    .premium-home .os-hero-workflow-pattern .os-hero-flow-unit {
+        width: 100%;
+    }
+
+    .premium-home .os-hero-workflow-pattern .os-hero-flow-step {
+        height: 100%;
+        padding: 12px 6px;
+    }
+
+    .premium-home .os-hero-workflow-pattern .os-hero-flow-step small {
+        display: block;
+        font-size: 10px;
+    }
+
+    .premium-home .os-hero-workflow-pattern .os-hero-flow-step b {
+        font-size: 12px;
+    }
+
+    .premium-home .os-hero-workflow-pattern .os-hero-flow-connector {
+        display: none;
+    }
+
+    .premium-home .os-mockup-policy-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .premium-home .os-mockup-policy-panel,
+    .premium-home .os-mockup-human-panel {
+        padding: 20px 14px;
+    }
+
+    .premium-home .os-faq-reassurance-actions > * {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .premium-home .os-faq-btn {
+        padding: 20px 16px;
+    }
+
+    .premium-home .os-faq-answer-body {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .premium-home .os-intelligence-section.os-section .os-intelligence-layout {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    .premium-home .os-intelligence-section.os-section .os-ai-panel {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .os-pro-stage,
+    .os-pro-stage > *,
+    .os-pro-window-body > * {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .premium-home #product-preview .os-pro-window-body:has(.os-pro-chart-box) > * {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .os-pro-stage {
+        padding: 16px;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .os-pro-stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .os-pro-stat-grid > * {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .os-pro-window-topbar {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .os-pro-window-title {
+        order: 3;
+        flex: 1 0 100%;
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .os-pro-window-title > span {
+        min-width: 0;
+    }
+
+    .os-pro-window-status {
+        flex-shrink: 0;
+    }
+
+    .os-pro-stat-change,
+    .os-pro-stat-sub {
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .premium-home .os-intelligence-section.os-section .os-signal-flow {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .premium-home .os-intelligence-section.os-section .os-signal-flow article {
+        min-width: 0;
+        flex: 1 1 150px;
+    }
+
+    .premium-home .os-intelligence-section.os-section .os-ai-panel h2 {
+        font-size: clamp(30px, 8vw, 46px) !important;
+    }
+}
